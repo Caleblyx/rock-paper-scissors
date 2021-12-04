@@ -46,6 +46,7 @@ function game() {
     for (let i = 0; i < 5; i++) {
         playerSelection = prompt("Please choose either rock, paper, or scissors.");
         computerSelection = computerPlay();
+        console.log("The computer chose: " + computerSelection.toString());
         let result = playRound(playerSelection, computerSelection)
         console.log(result);
         if (result.indexOf("win.") > -1) {
@@ -54,7 +55,8 @@ function game() {
             computerScore++;
         }
     }
-
+    console.log("The computer scored:" + computerScore.toString());
+    console.log("You scored: " + playerScore.toString());
     if (playerScore > computerScore) {
         console.log("You won!");
     } else if (playerScore < computerScore) {
