@@ -40,30 +40,74 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Please choose either rock, paper, or scissors.");
-        computerSelection = computerPlay();
-        console.log("The computer chose: " + computerSelection.toString());
-        let result = playRound(playerSelection, computerSelection)
-        console.log(result);
-        if (result.indexOf("win.") > -1) {
-            playerScore++;
-        } else if (result.indexOf("lose.") > -1) {
-            computerScore++;
-        }
+    playerSelection = this.getAttribute('value');
+    computerSelection = computerPlay();
+    updateChoicesUI(playerSelection, computerSelection);
+    let result = playRound(playerSelection, computerSelection)
+    console.log(result);
+    if (result.indexOf("win.") > -1) {
+        playerScore++;
+    } else if (result.indexOf("lose.") > -1) {
+        computerScore++;
     }
-    console.log("The computer scored:" + computerScore.toString());
-    console.log("You scored: " + playerScore.toString());
-    if (playerScore > computerScore) {
-        console.log("You won!");
-    } else if (playerScore < computerScore) {
-        console.log("You loss!");
-    } else {
-        console.log("It's a tie!");
+    updateScoreUI();
+    if (playerScore==5 || computerScore == 5 ) {
+        displayWinner();
+        body.appendChild(resetButton);
     }
-
-
 }
+
+function updateChoicesUI(playerSelection, computerSelection){
+    if (playerSelection && computerSelection) {
+        playerSelectionDiv.textContent = "You chose: \n" + playerSelection;
+        computerSelectionDiv.textContent = "Computer chose: \n" + computerSelection;
+    } else{
+        playerSelectionDiv.textContent = '';
+        computerSelectionDiv.textContent = '';
+    }
+}
+
+function updateScoreUI() {
+    playerScoreDiv.textContent = "You scored: " + playerScore.toString();
+    computerScoreDiv.textContent = "Computer Scored: " + computerScore.toString();
+}
+
+function displayWinner() {
+    if (computerScore > playerScore) {
+        result.textContent = "The computer won!";
+    } else {
+        result.textContent = "You won!";
+    }
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    updateScoreUI();
+    updateChoicesUI('','');
+    result.textContent = 'Keep playing until a player scores 5 points!';
+    body.removeChild(resetButton);
+}
+
+
+let playerScore = 0;
+let computerScore = 0;
+const body = document.querySelector('body');
+const computerScoreDiv = document.querySelector('.computer-score');
+const playerScoreDiv = document.querySelector('.player-score');
+const result = document.querySelector('.result');
+const playerSelectionDiv = document.querySelector('.player-selection');
+const computerSelectionDiv = document.querySelector('.computer-selection'); 
+const resetButton = document.createElement('button')
+resetButton.setAttribute("value", "reset");
+resetButton.textContent = "Reset";
+resetButton.addEventListener('click', resetGame);
+
+const buttons = document.querySelectorAll("input");
+let playerSelection;
+buttons.forEach(button => button.addEventListener('click', game));
+
+
+
