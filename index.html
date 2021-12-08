@@ -7,29 +7,40 @@
     </head>
     <body>
         <div class="result">
-            Keep playing until a player scores 5 points!
+            The first to score 5 wins!
         </div>
-        <div class="buttons">
-            <input type ="image" src="images/rock.png" value="Rock">
-            </input>
-            <input type ="image" src="images/paper.png" value="Paper">
-            </input>
-            <input type ="image" src="images/scissors.png" value="Scissors">
-            </input>
+        <div class ="board">
+            <div class="player-board">
+                <div class="player-label">You</div>
+                <div class="board-label">Score:</div>
+                <div class="player-score">
+                    0
+                </div>
+                <div class="board-label">
+                    Choose one:
+                </div>
+                <div class="buttons">
+                    <input type ="image" src="images/rock.png" value="Rock">
+                    </input>
+                    <input type ="image" src="images/paper.png" value="Paper">
+                    </input>
+                    <input type ="image" src="images/scissors.png" value="Scissors">
+                    </input>
+                </div>
+            </div>
+
+            <div class="computer-board">
+                <div class="player-label">Computer</div>
+                <div class="board-label">Score:</div>
+                <div class="computer-score">
+                    0
+                </div>
+                <div class="board-label">
+                    Choice:
+                </div>
+                <img class="computer-selection" src="">
+            </div>
         </div>
-        <div class="scores">
-            <div class="player-score">
-                Your score: 0
-            </div>
-            <div class="computer-score">
-                Computer score: 0
-            </div>
-        </div>
-        <div class="choices">
-            <div class="player-selection">
-            </div>
-            <div class="computer-selection">
-            </div>
-        </div>
+
     </body>
 </html>

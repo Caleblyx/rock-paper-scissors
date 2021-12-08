@@ -9,7 +9,6 @@ function capitalize(s){
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = capitalize(playerSelection);
 
     if (playerSelection == "Rock") {
         if (computerSelection == "Rock") {
@@ -44,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     playerSelection = this.getAttribute('value');
     computerSelection = computerPlay();
-    updateChoicesUI(playerSelection, computerSelection);
+    updateChoicesUI(computerSelection);
     let result = playRound(playerSelection, computerSelection)
     console.log(result);
     if (result.indexOf("win.") > -1) {
@@ -55,23 +54,21 @@ function game() {
     updateScoreUI();
     if (playerScore==5 || computerScore == 5 ) {
         displayWinner();
-        body.appendChild(resetButton);
+        playerBoard.appendChild(resetButton);
     }
 }
 
-function updateChoicesUI(playerSelection, computerSelection){
-    if (playerSelection && computerSelection) {
-        playerSelectionDiv.textContent = "You chose: \n" + playerSelection;
-        computerSelectionDiv.textContent = "Computer chose: \n" + computerSelection;
+function updateChoicesUI(computerSelection){
+    if (computerSelection) {
+        computerSelectionDiv.setAttribute("src", `images/${computerSelection.toLowerCase()}.png`);
     } else{
-        playerSelectionDiv.textContent = '';
-        computerSelectionDiv.textContent = '';
+        computerSelectionDiv.setAttribute("src", ``);
     }
 }
 
 function updateScoreUI() {
-    playerScoreDiv.textContent = "You scored: " + playerScore.toString();
-    computerScoreDiv.textContent = "Computer Scored: " + computerScore.toString();
+    playerScoreDiv.textContent = playerScore.toString();
+    computerScoreDiv.textContent = computerScore.toString();
 }
 
 function displayWinner() {
@@ -86,15 +83,15 @@ function resetGame() {
     playerScore = 0;
     computerScore = 0;
     updateScoreUI();
-    updateChoicesUI('','');
+    updateChoicesUI('');
     result.textContent = 'Keep playing until a player scores 5 points!';
-    body.removeChild(resetButton);
+    playerBoard.removeChild(resetButton);
 }
 
 
 let playerScore = 0;
 let computerScore = 0;
-const body = document.querySelector('body');
+const playerBoard = document.querySelector('.player-board');
 const computerScoreDiv = document.querySelector('.computer-score');
 const playerScoreDiv = document.querySelector('.player-score');
 const result = document.querySelector('.result');

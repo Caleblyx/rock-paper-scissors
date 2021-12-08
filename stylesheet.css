@@ -1,39 +1,78 @@
+html{
+    height: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    height: 100%;
 }
 
 button {
     align-self: center;
     justify-content: center;
+    font-size: 40px;
 }
 
 .buttons,
-.scores,
-.choices,
 .result {
     display: flex;
     justify-content: center;
 }
 
-.choices {
-    gap: 50px;
-    white-space: pre-wrap;
-    text-align: center;
+.board{
+    display: flex;
+    justify-content: center;
+    height: 100%;
 }
 
-.scores{
-    flex-direction: column;
+.player-board,
+.computer-board {
+    flex: 1 1 0;
+    display: flex;
     align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-label{
+    font-size: 32px;
+    padding-top: 20px;
+}
+.player-board{
+    border-right: 10px solid black;
 }
 
 input {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
 }
 
 input:hover {
     transform: scale(1.2);
 }
+
+input:active{
+    transform: scale(0.9);
+}
+
+
+.player-selection,
+.computer-selection{
+    height: 500px;
+    width: 500px;
+
+}
+
+.result{
+    font-size: 50px;
+}
+
+.board-label,
+.player-score,
+.computer-score{
+    font-size: 32px;
+}
+
