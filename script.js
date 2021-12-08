@@ -55,6 +55,7 @@ function game() {
     if (playerScore==5 || computerScore == 5 ) {
         displayWinner();
         playerBoard.appendChild(resetButton);
+        buttons.forEach(button => button.removeEventListener('click', game));
     }
 }
 
@@ -86,6 +87,7 @@ function resetGame() {
     updateChoicesUI('');
     result.textContent = 'Keep playing until a player scores 5 points!';
     playerBoard.removeChild(resetButton);
+    buttons.forEach(button => button.addEventListener('click', game));
 }
 
 
